@@ -78,3 +78,5 @@ cmake-build-debug/
 libuv-*.tar.*
 /dist.libuv.org/
 /libuv-release-tool/
+
+libuvjni*.*
