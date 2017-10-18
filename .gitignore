@@ -79,4 +79,4 @@ libuv-*.tar.*
 /dist.libuv.org/
 /libuv-release-tool/
 
-libuvjni*.*
+libuvjni??.*
