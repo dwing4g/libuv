@@ -4,6 +4,8 @@
 #include <jni.h>
 #include "uv.h"
 
+#define DEF_JAVA(F) Java_jane_test_net_Libuv_ ## F
+
 #define RECV_BUF_SIZE (64 * 1024)
 
 #define CLOSE_FROM_ACTIVE     (0)
@@ -41,7 +43,7 @@ typedef struct
 } jni_uv_tcp_t; // uv_tcp_t, uv_stream_t, uv_handle_t
 
 // public static native long libuv_loop_create(LibuvLoopHandler handler);
-JNIEXPORT jlong JNICALL Java_jane_net_Libuv_libuv_1loop_1create(JNIEnv* jenv, jclass jcls, jobject handler)
+JNIEXPORT jlong JNICALL DEF_JAVA(libuv_1loop_1create)(JNIEnv* jenv, jclass jcls, jobject handler)
 {
 	jni_uv_loop_t* jloop;
 	jclass cls;
@@ -89,7 +91,7 @@ JNIEXPORT jlong JNICALL Java_jane_net_Libuv_libuv_1loop_1create(JNIEnv* jenv, jc
 }
 
 // public static native int libuv_loop_destroy(long handle_loop);
-JNIEXPORT jint JNICALL Java_jane_net_Libuv_libuv_1loop_1destroy(JNIEnv* jenv, jclass jcls, jlong handle_loop)
+JNIEXPORT jint JNICALL DEF_JAVA(libuv_1loop_1destroy)(JNIEnv* jenv, jclass jcls, jlong handle_loop)
 {
 	int r;
 	jni_uv_loop_t* jloop = (jni_uv_loop_t*)handle_loop;
@@ -102,15 +104,14 @@ JNIEXPORT jint JNICALL Java_jane_net_Libuv_libuv_1loop_1destroy(JNIEnv* jenv, jc
 }
 
 // public static native ByteBuffer libuv_loop_buffer(long handle_loop);
-JNIEXPORT jobject JNICALL Java_jane_net_Libuv_libuv_1loop_1buffer(JNIEnv* jenv, jclass jcls, jlong handle_loop)
+JNIEXPORT jobject JNICALL DEF_JAVA(libuv_1loop_1buffer)(JNIEnv* jenv, jclass jcls, jlong handle_loop)
 {
 	jni_uv_loop_t* jloop = (jni_uv_loop_t*)handle_loop;
-	if(!jloop) return 0;
-	return (*jenv)->NewDirectByteBuffer(jenv, jloop->recv_buf, RECV_BUF_SIZE);
+	return jloop ? (*jenv)->NewDirectByteBuffer(jenv, jloop->recv_buf, RECV_BUF_SIZE) : 0;
 }
 
 // public static native int libuv_loop_run(long handle_loop, int mode);
-JNIEXPORT jint JNICALL Java_jane_net_Libuv_libuv_1loop_1run(JNIEnv* jenv, jclass jcls, jlong handle_loop, jint mode)
+JNIEXPORT jint JNICALL DEF_JAVA(libuv_1loop_1run)(JNIEnv* jenv, jclass jcls, jlong handle_loop, jint mode)
 {
 	jni_uv_loop_t* jloop = (jni_uv_loop_t*)handle_loop;
 	return jloop ? uv_run(&jloop->loop, (uv_run_mode)mode) : -1;
@@ -199,9 +200,13 @@ static void do_open(jni_uv_tcp_t* jtcp)
 	jni_uv_loop_t* jloop = (jni_uv_loop_t*)jtcp->tcp.loop;
 	JNIEnv* jenv = jloop->jenv;
 
+	uv_tcp_nodelay(&jtcp->tcp, 0);
+	uv_tcp_keepalive(&jtcp->tcp, 0, 0);
+	uv_tcp_simultaneous_accepts(&jtcp->tcp, 1);
+
 	memset(&sa, 0, sa_size);
 	uv_tcp_getpeername(&jtcp->tcp, (struct sockaddr*)&sa, &sa_size); // ignore return
-	uv_inet_ntop(sa.sin_family, &sa, (char*)ip, sizeof(ip)); // ignore return
+	uv_inet_ntop(sa.sin_family, &sa.sin_addr, ip, sizeof(ip)); // ignore return
 	jip = (*jenv)->NewStringUTF(jenv, ip);
 	(*jenv)->CallVoidMethod(jenv, jloop->handler, jloop->mid_onOpen, (jlong)jtcp, jip, ntohs(sa.sin_port));
 	if(check_exception(jenv, jloop, jtcp)) return;
@@ -255,7 +260,7 @@ static void on_connect(uv_connect_t* conn, int status)
 }
 
 // public static native int libuv_tcp_bind(long handle_loop, String ip, int port, int backlog);
-JNIEXPORT jint JNICALL Java_jane_net_Libuv_libuv_1tcp_1bind(JNIEnv* jenv, jclass jcls, jlong handle_loop, jstring ip, jint port, jint backlog)
+JNIEXPORT jint JNICALL DEF_JAVA(libuv_1tcp_1bind)(JNIEnv* jenv, jclass jcls, jlong handle_loop, jstring ip, jint port, jint backlog)
 {
 	int r;
 	jni_uv_loop_t* jloop;
@@ -287,7 +292,7 @@ err_:
 }
 
 // public static native int libuv_tcp_connect(long handle_loop, String ip, int port);
-JNIEXPORT jint JNICALL Java_jane_net_Libuv_libuv_1tcp_1connect(JNIEnv* jenv, jclass jcls, jlong handle_loop, jstring ip, jint port)
+JNIEXPORT jint JNICALL DEF_JAVA(libuv_1tcp_1connect)(JNIEnv* jenv, jclass jcls, jlong handle_loop, jstring ip, jint port)
 {
 	int r;
 	jni_uv_loop_t* jloop;
@@ -329,7 +334,7 @@ err_:
 }
 
 // public static native int libuv_tcp_send(long handle_stream, ByteBuffer buffer, int pos, int len);
-JNIEXPORT jint JNICALL Java_jane_net_Libuv_libuv_1tcp_1send(JNIEnv* jenv, jclass jcls, jlong handle_stream, jobject buffer, jint pos, jint len)
+JNIEXPORT jint JNICALL DEF_JAVA(libuv_1tcp_1send)(JNIEnv* jenv, jclass jcls, jlong handle_stream, jobject buffer, jint pos, jint len)
 {
 	int r;
 	void* buf;
@@ -350,13 +355,13 @@ JNIEXPORT jint JNICALL Java_jane_net_Libuv_libuv_1tcp_1send(JNIEnv* jenv, jclass
 	return r; // uv_strerror(r)
 }
 
-// public static native int libuv_tcp_close(long handle_stream);
-JNIEXPORT jint JNICALL Java_jane_net_Libuv_libuv_1tcp_1close(JNIEnv* jenv, jclass jcls, jlong handle_stream)
+// public static native int libuv_tcp_close(long handle_stream, int errcode);
+JNIEXPORT jint JNICALL DEF_JAVA(libuv_1tcp_1close)(JNIEnv* jenv, jclass jcls, jlong handle_stream, jint errcode)
 {
 	jni_uv_tcp_t* jtcp = (jni_uv_tcp_t*)handle_stream;
 	if(!jtcp) return EBADF;
 	jtcp->close_from = CLOSE_FROM_ACTIVE;
-	jtcp->close_errcode = 0;
+	jtcp->close_errcode = errcode;
 	uv_close((uv_handle_t*)jtcp, on_close);
 	return 0;
 }
