@@ -247,6 +247,9 @@
     <Filter Include="src\win">
       <UniqueIdentifier>{47FC5EC4-15EB-E92F-89D7-AFE51CF838A9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\jni">
+      <UniqueIdentifier>{914b8b34-d2a2-4146-bfbd-b094f8e23155}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\uv.h">
@@ -393,5 +396,16 @@
     <ClInclude Include="src\win\winsock.h">
       <Filter>src\win</Filter>
     </ClInclude>
+    <ClInclude Include="src\jni\jni.h">
+      <Filter>src\jni</Filter>
+    </ClInclude>
+    <ClInclude Include="src\jni\jni_md.h">
+      <Filter>src\jni</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\jni.c">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
