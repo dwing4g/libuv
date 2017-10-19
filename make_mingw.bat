@@ -41,7 +41,8 @@ src\win\timer.c ^
 src\win\udp.c ^
 src\win\util.c ^
 src\win\winapi.c ^
-src\win\winsock.c
+src\win\winsock.c ^
+src\jni.c
 
 set LIB32_FILES=^
 %MINGW_LIB32%\libws2_32.a ^
@@ -55,15 +56,15 @@ set LIB64_FILES=^
 %MINGW_LIB64%\libiphlpapi.a ^
 %MINGW_LIB64%\libuserenv.a
 
-set COMPILE=-std=gnu89 -DNDEBUG -DWIN32 -D_WIN32_WINNT=0x0600 -D__USE_MINGW_ANSI_STDIO=1 -D_GNU_SOURCE -DBUILDING_UV_SHARED -DENABLE_JNI -Iinclude -Isrc -Ofast -ffast-math -fweb -fomit-frame-pointer -fmerge-all-constants -flto -fwhole-program -pipe -static
+set COMPILE=-std=gnu89 -DNDEBUG -DWIN32 -D_WIN32_WINNT=0x0600 -D__USE_MINGW_ANSI_STDIO=1 -D_GNU_SOURCE -DBUILDING_UV_SHARED -DENABLE_JNI -Iinclude -Isrc -Isrc/jni -Ofast -ffast-math -fweb -fomit-frame-pointer -fmerge-all-constants -flto -fwhole-program -pipe -static -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast
 
 set COMPILE32=%MINGW_BIN%\i686-w64-mingw32-gcc.exe -m32 -march=i686 %COMPILE%
 set COMPILE64=%MINGW_BIN%\x86_64-w64-mingw32-gcc.exe -m64 %COMPILE%
 
-echo building libuvjni32.dll ...
-%COMPILE32% -shared -Wl,--image-base,0x10000000 -Wl,--kill-at -Wl,--compat-implib -Wl,--out-implib,libuvjni32.lib -Wl,--output-def,libuvjni32.def -Wl,-soname -Wl,libuvjni32.dll -o libuvjni32.dll %CORE_FILES% %LIB32_FILES%
+echo building uvjni32.dll ...
+%COMPILE32% -shared -Wl,--image-base,0x10000000 -Wl,--kill-at -Wl,--compat-implib -Wl,--out-implib,uvjni32.lib -Wl,--output-def,uvjni32.def -Wl,-soname -Wl,uvjni32.dll -o uvjni32.dll %CORE_FILES% %LIB32_FILES%
 
-echo building libuvjni64.dll ...
-%COMPILE64% -shared -Wl,--image-base,0x10000000 -Wl,--kill-at -Wl,--compat-implib -Wl,--out-implib,libuvjni64.lib -Wl,--output-def,libuvjni64.def -Wl,-soname -Wl,libuvjni64.dll -o libuvjni64.dll %CORE_FILES% %LIB64_FILES%
+echo building uvjni64.dll ...
+%COMPILE64% -shared -Wl,--image-base,0x10000000 -Wl,--kill-at -Wl,--compat-implib -Wl,--out-implib,uvjni64.lib -Wl,--output-def,uvjni64.def -Wl,-soname -Wl,uvjni64.dll -o uvjni64.dll %CORE_FILES% %LIB64_FILES%
 
 pause

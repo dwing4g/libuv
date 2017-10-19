@@ -80,3 +80,4 @@ libuv-*.tar.*
 /libuv-release-tool/
 
 libuvjni??.*
+uvjni??.*
