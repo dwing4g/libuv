@@ -1,6 +1,7 @@
 #ifdef ENABLE_JNI
 
 #include <stdlib.h>
+#include <string.h>
 #include <jni.h>
 #include "uv.h"
 
