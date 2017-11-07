@@ -95,6 +95,8 @@ uv_hrtime
 uv_idle_init
 uv_idle_start
 uv_idle_stop
+uv_if_indextoiid
+uv_if_indextoname
 uv_inet_ntop
 uv_inet_pton
 uv_interface_addresses
@@ -133,11 +135,13 @@ uv_os_free_passwd
 uv_os_get_passwd
 uv_os_getenv
 uv_os_gethostname
+uv_os_getppid
 uv_os_homedir
 uv_os_setenv
 uv_os_tmpdir
 uv_os_unsetenv
 uv_pipe_bind
+uv_pipe_chmod
 uv_pipe_connect
 uv_pipe_getpeername
 uv_pipe_getsockname
