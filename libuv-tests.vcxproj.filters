@@ -957,6 +957,9 @@
     <ClCompile Include="src\win\winsock.c">
       <Filter>src\win</Filter>
     </ClCompile>
+    <ClCompile Include="test\test-pipe-set-fchmod.c">
+      <Filter>test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\heap-inl.h">
