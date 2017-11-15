@@ -88,14 +88,14 @@ JNIEXPORT jlong JNICALL DEF_JAVA(libuv_1loop_1create)(JNIEnv* jenv, jclass jcls,
 		free(jloop);
 		return 0;
 	}
-	return (jlong)jloop;
+	return (jlong)(uintptr_t)jloop;
 }
 
 // public static native int libuv_loop_destroy(long handle_loop);
 JNIEXPORT jint JNICALL DEF_JAVA(libuv_1loop_1destroy)(JNIEnv* jenv, jclass jcls, jlong handle_loop)
 {
 	int r;
-	jni_uv_loop_t* jloop = (jni_uv_loop_t*)handle_loop;
+	jni_uv_loop_t* jloop = (jni_uv_loop_t*)(uintptr_t)handle_loop;
 	if(!jloop) return EBADF;
 	r = uv_loop_close(&jloop->loop);
 	if(r) return r;
@@ -107,14 +107,14 @@ JNIEXPORT jint JNICALL DEF_JAVA(libuv_1loop_1destroy)(JNIEnv* jenv, jclass jcls,
 // public static native ByteBuffer libuv_loop_buffer(long handle_loop);
 JNIEXPORT jobject JNICALL DEF_JAVA(libuv_1loop_1buffer)(JNIEnv* jenv, jclass jcls, jlong handle_loop)
 {
-	jni_uv_loop_t* jloop = (jni_uv_loop_t*)handle_loop;
+	jni_uv_loop_t* jloop = (jni_uv_loop_t*)(uintptr_t)handle_loop;
 	return jloop ? (*jenv)->NewDirectByteBuffer(jenv, jloop->recv_buf, RECV_BUF_SIZE) : 0;
 }
 
 // public static native int libuv_loop_run(long handle_loop, int mode);
 JNIEXPORT jint JNICALL DEF_JAVA(libuv_1loop_1run)(JNIEnv* jenv, jclass jcls, jlong handle_loop, jint mode)
 {
-	jni_uv_loop_t* jloop = (jni_uv_loop_t*)handle_loop;
+	jni_uv_loop_t* jloop = (jni_uv_loop_t*)(uintptr_t)handle_loop;
 	return jloop ? uv_run(&jloop->loop, (uv_run_mode)mode) : -1;
 }
 
@@ -123,7 +123,7 @@ static int check_exception(JNIEnv* jenv, jni_uv_loop_t* jloop, jni_uv_tcp_t* jtc
 	jthrowable ex = (*jenv)->ExceptionOccurred(jenv);
 	if(!ex) return 0;
 	(*jenv)->ExceptionClear(jenv);
-	(*jenv)->CallVoidMethod(jenv, jloop->handler, jloop->mid_onException, (jlong)jtcp, ex);
+	(*jenv)->CallVoidMethod(jenv, jloop->handler, jloop->mid_onException, (jlong)(uintptr_t)jtcp, ex);
 	// if((*jenv)->ExceptionCheck(jenv) == JNI_TRUE)
 	(*jenv)->ExceptionClear(jenv); // ignore any exception in onException
 	return 1;
@@ -143,7 +143,7 @@ static void on_close(uv_handle_t* handle)
 	int from = jtcp->close_from;
 	int errcode = jtcp->close_errcode;
 	free(jtcp);
-	(*jenv)->CallVoidMethod(jenv, jloop->handler, jloop->mid_onClose, (jlong)jtcp, from, errcode);
+	(*jenv)->CallVoidMethod(jenv, jloop->handler, jloop->mid_onClose, (jlong)(uintptr_t)jtcp, from, errcode);
 	// if((*jenv)->ExceptionCheck(jenv) == JNI_TRUE)
 	(*jenv)->ExceptionClear(jenv); // ignore any exception in onClose
 }
@@ -169,7 +169,7 @@ static void on_write(uv_write_t* req, int status)
 	buffer = (*jenv)->NewLocalRef(jenv, wr->buffer);
 	(*jenv)->DeleteGlobalRef(jenv, wr->buffer);
 	wr->buffer = 0;
-	(*jenv)->CallVoidMethod(jenv, jloop->handler, jloop->mid_onSend, (jlong)jtcp, buffer);
+	(*jenv)->CallVoidMethod(jenv, jloop->handler, jloop->mid_onSend, (jlong)(uintptr_t)jtcp, buffer);
 	check_exception(jenv, jloop, jtcp);
 }
 
@@ -187,7 +187,7 @@ static void on_read(uv_stream_t* stream, ssize_t nread, const uv_buf_t* buf)
 	}
 	jloop = (jni_uv_loop_t*)jtcp->tcp.loop;
 	jenv = jloop->jenv;
-	(*jenv)->CallVoidMethod(jenv, jloop->handler, jloop->mid_onRecv, (jlong)jtcp, nread);
+	(*jenv)->CallVoidMethod(jenv, jloop->handler, jloop->mid_onRecv, (jlong)(uintptr_t)jtcp, nread);
 	check_exception(jenv, jloop, jtcp);
 }
 
@@ -209,7 +209,7 @@ static void do_open(jni_uv_tcp_t* jtcp)
 	uv_tcp_getpeername(&jtcp->tcp, (struct sockaddr*)&sa, &sa_size); // ignore return
 	uv_inet_ntop(sa.sin_family, &sa.sin_addr, ip, sizeof(ip)); // ignore return
 	jip = (*jenv)->NewStringUTF(jenv, ip);
-	(*jenv)->CallVoidMethod(jenv, jloop->handler, jloop->mid_onOpen, (jlong)jtcp, jip, ntohs(sa.sin_port));
+	(*jenv)->CallVoidMethod(jenv, jloop->handler, jloop->mid_onOpen, (jlong)(uintptr_t)jtcp, jip, ntohs(sa.sin_port));
 	if(check_exception(jenv, jloop, jtcp)) return;
 
 	r = uv_read_start((uv_stream_t*)jtcp, on_alloc, on_read);
@@ -269,7 +269,7 @@ JNIEXPORT jint JNICALL DEF_JAVA(libuv_1tcp_1bind)(JNIEnv* jenv, jclass jcls, jlo
 	const char* ip_str;
 	struct sockaddr_in sa;
 
-	jloop = (jni_uv_loop_t*)handle_loop;
+	jloop = (jni_uv_loop_t*)(uintptr_t)handle_loop;
 	if(!jloop) return EBADF;
 	tcp = (uv_tcp_t*)malloc(sizeof(uv_tcp_t));
 	if(!tcp) return ENOMEM;
@@ -302,7 +302,7 @@ JNIEXPORT jint JNICALL DEF_JAVA(libuv_1tcp_1connect)(JNIEnv* jenv, jclass jcls, 
 	const char* ip_str;
 	struct sockaddr_in sa;
 
-	jloop = (jni_uv_loop_t*)handle_loop;
+	jloop = (jni_uv_loop_t*)(uintptr_t)handle_loop;
 	if(!jloop) return EBADF;
 	jtcp = (jni_uv_tcp_t*)malloc(sizeof(jni_uv_tcp_t));
 	if(!jtcp) return ENOMEM;
@@ -339,7 +339,7 @@ JNIEXPORT jint JNICALL DEF_JAVA(libuv_1tcp_1send)(JNIEnv* jenv, jclass jcls, jlo
 {
 	int r;
 	void* buf;
-	jni_uv_tcp_t* jtcp = (jni_uv_tcp_t*)handle_stream;
+	jni_uv_tcp_t* jtcp = (jni_uv_tcp_t*)(uintptr_t)handle_stream;
 	if(!jtcp || !buffer) return EBADF;
 	buf = (*jenv)->GetDirectBufferAddress(jenv, buffer);
 	if(!buf) return EBADF;
@@ -359,7 +359,7 @@ JNIEXPORT jint JNICALL DEF_JAVA(libuv_1tcp_1send)(JNIEnv* jenv, jclass jcls, jlo
 // public static native int libuv_tcp_close(long handle_stream, int errcode);
 JNIEXPORT jint JNICALL DEF_JAVA(libuv_1tcp_1close)(JNIEnv* jenv, jclass jcls, jlong handle_stream, jint errcode)
 {
-	jni_uv_tcp_t* jtcp = (jni_uv_tcp_t*)handle_stream;
+	jni_uv_tcp_t* jtcp = (jni_uv_tcp_t*)(uintptr_t)handle_stream;
 	if(!jtcp) return EBADF;
 	jtcp->close_from = CLOSE_FROM_ACTIVE;
 	jtcp->close_errcode = errcode;
