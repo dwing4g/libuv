@@ -58,6 +58,11 @@ uv_fs_fstat
 uv_fs_fsync
 uv_fs_ftruncate
 uv_fs_futime
+uv_fs_get_path
+uv_fs_get_ptr
+uv_fs_get_result
+uv_fs_get_statbuf
+uv_fs_get_type
 uv_fs_link
 uv_fs_lstat
 uv_fs_mkdir
@@ -89,7 +94,12 @@ uv_getaddrinfo
 uv_getnameinfo
 uv_getrusage
 uv_guess_handle
+uv_handle_get_data
+uv_handle_get_loop
+uv_handle_get_type
+uv_handle_set_data
 uv_handle_size
+uv_handle_type_name
 uv_has_ref
 uv_hrtime
 uv_idle_init
@@ -120,8 +130,10 @@ uv_loop_close
 uv_loop_configure
 uv_loop_delete
 uv_loop_fork
+uv_loop_get_data
 uv_loop_init
 uv_loop_new
+uv_loop_set_data
 uv_loop_size
 uv_mutex_destroy
 uv_mutex_init
@@ -135,6 +147,7 @@ uv_os_free_passwd
 uv_os_get_passwd
 uv_os_getenv
 uv_os_gethostname
+uv_os_getpid
 uv_os_getppid
 uv_os_homedir
 uv_os_setenv
@@ -159,6 +172,7 @@ uv_prepare_start
 uv_prepare_stop
 uv_print_active_handles
 uv_print_all_handles
+uv_process_get_pid
 uv_process_kill
 uv_queue_work
 uv_read_start
@@ -166,7 +180,11 @@ uv_read_stop
 uv_recv_buffer_size
 uv_ref
 uv_replace_allocator
+uv_req_get_data
+uv_req_get_type
+uv_req_set_data
 uv_req_size
+uv_req_type_name
 uv_resident_set_memory
 uv_run
 uv_rwlock_destroy
@@ -192,6 +210,7 @@ uv_signal_start_oneshot
 uv_signal_stop
 uv_spawn
 uv_stop
+uv_stream_get_write_queue_size
 uv_stream_set_blocking
 uv_strerror
 uv_tcp_bind
@@ -221,6 +240,8 @@ uv_tty_init
 uv_tty_reset_mode
 uv_tty_set_mode
 uv_udp_bind
+uv_udp_get_send_queue_count
+uv_udp_get_send_queue_size
 uv_udp_getsockname
 uv_udp_init
 uv_udp_init_ex

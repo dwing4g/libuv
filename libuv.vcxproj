@@ -258,6 +258,7 @@
     <ClCompile Include="src\jni.c" />
     <ClCompile Include="src\threadpool.c" />
     <ClCompile Include="src\uv-common.c" />
+    <ClCompile Include="src\uv-data-getter-setters.c" />
     <ClCompile Include="src\version.c" />
     <ClCompile Include="src\win\async.c" />
     <ClCompile Include="src\win\core.c" />

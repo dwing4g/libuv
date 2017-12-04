@@ -14,6 +14,7 @@ src\fs-poll.c ^
 src\inet.c ^
 src\threadpool.c ^
 src\uv-common.c ^
+src\uv-data-getter-setters.c ^
 src\version.c ^
 src\win\async.c ^
 src\win\core.c ^
