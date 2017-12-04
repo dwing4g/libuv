@@ -247,6 +247,7 @@
     <ClCompile Include="src\inet.c" />
     <ClCompile Include="src\threadpool.c" />
     <ClCompile Include="src\uv-common.c" />
+    <ClCompile Include="src\uv-data-getter-setters.c" />
     <ClCompile Include="src\version.c" />
     <ClCompile Include="src\win\async.c" />
     <ClCompile Include="src\win\core.c" />
@@ -308,6 +309,7 @@
     <ClCompile Include="test\test-gethostname.c" />
     <ClCompile Include="test\test-getnameinfo.c" />
     <ClCompile Include="test\test-getsockname.c" />
+    <ClCompile Include="test\test-getters-setters.c" />
     <ClCompile Include="test\test-handle-fileno.c" />
     <ClCompile Include="test\test-homedir.c" />
     <ClCompile Include="test\test-hrtime.c" />
@@ -322,6 +324,7 @@
     <ClCompile Include="test\test-loop-time.c" />
     <ClCompile Include="test\test-loop-configure.c" />
     <ClCompile Include="test\test-pipe-set-fchmod.c" />
+    <ClCompile Include="test\test-process-title-threadsafe.c" />
     <ClCompile Include="test\test-walk-handles.c" />
     <ClCompile Include="test\test-watcher-cross-stop.c" />
     <ClCompile Include="test\test-multiple-listen.c" />

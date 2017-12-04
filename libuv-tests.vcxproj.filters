@@ -960,6 +960,15 @@
     <ClCompile Include="test\test-pipe-set-fchmod.c">
       <Filter>test</Filter>
     </ClCompile>
+    <ClCompile Include="test\test-getters-setters.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-process-title-threadsafe.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="src\uv-data-getter-setters.c">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\heap-inl.h">
