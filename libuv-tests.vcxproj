@@ -280,6 +280,7 @@
     <ClCompile Include="test\echo-server.c" />
     <ClCompile Include="test\run-tests.c" />
     <ClCompile Include="test\runner.c" />
+    <ClCompile Include="test\test-connect-unspecified.c" />
     <ClCompile Include="test\test-get-loadavg.c" />
     <ClCompile Include="test\test-active.c" />
     <ClCompile Include="test\test-async.c" />
