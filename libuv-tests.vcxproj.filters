@@ -924,9 +924,6 @@
     <ClCompile Include="src\win\process-stdio.c">
       <Filter>src\win</Filter>
     </ClCompile>
-    <ClCompile Include="src\win\req.c">
-      <Filter>src\win</Filter>
-    </ClCompile>
     <ClCompile Include="src\win\signal.c">
       <Filter>src\win</Filter>
     </ClCompile>
@@ -940,9 +937,6 @@
       <Filter>src\win</Filter>
     </ClCompile>
     <ClCompile Include="src\win\tty.c">
-      <Filter>src\win</Filter>
-    </ClCompile>
-    <ClCompile Include="src\win\timer.c">
       <Filter>src\win</Filter>
     </ClCompile>
     <ClCompile Include="src\win\udp.c">
@@ -971,6 +965,66 @@
     </ClCompile>
     <ClCompile Include="test\test-connect-unspecified.c">
       <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-gettimeofday.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-fs-fd-hash.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-fs-open-flags.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-fs-readdir.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-idna.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-ipc-heavy-traffic-deadlock-bug.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-process-priority.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-random.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-signal-pending-on-close.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-strscpy.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-tcp-close-reset.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-tcp-try-write-error.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-tty-duplicate-key.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-tty-escape-sequence-processing.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-udp-connect.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-uname.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idna.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\random.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strscpy.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\timer.c">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1002,6 +1056,15 @@
       <Filter>src\win</Filter>
     </ClInclude>
     <ClInclude Include="src\win\winsock.h">
+      <Filter>src\win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idna.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strscpy.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\win\fs-fd-hash-inl.h">
       <Filter>src\win</Filter>
     </ClInclude>
   </ItemGroup>
