@@ -255,18 +255,6 @@
     <ClInclude Include="include\uv.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\tree.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\uv-errno.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\uv-threadpool.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\uv-version.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClCompile Include="src\fs-poll.c">
       <Filter>src</Filter>
     </ClCompile>
@@ -291,9 +279,6 @@
     <ClCompile Include="src\version.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClInclude Include="include\uv-win.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClCompile Include="src\win\async.c">
       <Filter>src\win</Filter>
     </ClCompile>
@@ -351,9 +336,6 @@
     <ClCompile Include="src\win\process-stdio.c">
       <Filter>src\win</Filter>
     </ClCompile>
-    <ClCompile Include="src\win\req.c">
-      <Filter>src\win</Filter>
-    </ClCompile>
     <ClInclude Include="src\win\req-inl.h">
       <Filter>src\win</Filter>
     </ClInclude>
@@ -373,9 +355,6 @@
       <Filter>src\win</Filter>
     </ClCompile>
     <ClCompile Include="src\win\tty.c">
-      <Filter>src\win</Filter>
-    </ClCompile>
-    <ClCompile Include="src\win\timer.c">
       <Filter>src\win</Filter>
     </ClCompile>
     <ClCompile Include="src\win\udp.c">
@@ -402,12 +381,33 @@
     <ClInclude Include="src\jni\jni_md.h">
       <Filter>src\jni</Filter>
     </ClInclude>
+    <ClInclude Include="src\idna.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strscpy.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\win\fs-fd-hash-inl.h">
+      <Filter>src\win</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\jni.c">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\uv-data-getter-setters.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\timer.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idna.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\random.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strscpy.c">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

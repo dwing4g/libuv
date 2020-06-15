@@ -228,9 +228,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\heap-inl.h" />
+    <ClInclude Include="src\idna.h" />
     <ClInclude Include="src\queue.h" />
+    <ClInclude Include="src\strscpy.h" />
     <ClInclude Include="src\uv-common.h" />
     <ClInclude Include="src\win\atomicops-inl.h" />
+    <ClInclude Include="src\win\fs-fd-hash-inl.h" />
     <ClInclude Include="src\win\handle-inl.h" />
     <ClInclude Include="src\win\internal.h" />
     <ClInclude Include="src\win\req-inl.h" />
@@ -244,8 +247,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\fs-poll.c" />
+    <ClCompile Include="src\idna.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\inet.c" />
+    <ClCompile Include="src\random.c" />
+    <ClCompile Include="src\strscpy.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\threadpool.c" />
+    <ClCompile Include="src\timer.c" />
     <ClCompile Include="src\uv-common.c" />
     <ClCompile Include="src\uv-data-getter-setters.c" />
     <ClCompile Include="src\version.c" />
@@ -264,13 +277,11 @@
     <ClCompile Include="src\win\poll.c" />
     <ClCompile Include="src\win\process-stdio.c" />
     <ClCompile Include="src\win\process.c" />
-    <ClCompile Include="src\win\req.c" />
     <ClCompile Include="src\win\signal.c" />
     <ClCompile Include="src\win\snprintf.c" />
     <ClCompile Include="src\win\stream.c" />
     <ClCompile Include="src\win\tcp.c" />
     <ClCompile Include="src\win\thread.c" />
-    <ClCompile Include="src\win\timer.c" />
     <ClCompile Include="src\win\tty.c" />
     <ClCompile Include="src\win\udp.c" />
     <ClCompile Include="src\win\util.c" />
@@ -281,6 +292,9 @@
     <ClCompile Include="test\run-tests.c" />
     <ClCompile Include="test\runner.c" />
     <ClCompile Include="test\test-connect-unspecified.c" />
+    <ClCompile Include="test\test-fs-fd-hash.c" />
+    <ClCompile Include="test\test-fs-open-flags.c" />
+    <ClCompile Include="test\test-fs-readdir.c" />
     <ClCompile Include="test\test-get-loadavg.c" />
     <ClCompile Include="test\test-active.c" />
     <ClCompile Include="test\test-async.c" />
@@ -311,11 +325,17 @@
     <ClCompile Include="test\test-getnameinfo.c" />
     <ClCompile Include="test\test-getsockname.c" />
     <ClCompile Include="test\test-getters-setters.c" />
+    <ClCompile Include="test\test-gettimeofday.c" />
     <ClCompile Include="test\test-handle-fileno.c" />
     <ClCompile Include="test\test-homedir.c" />
     <ClCompile Include="test\test-hrtime.c" />
     <ClCompile Include="test\test-idle.c" />
+    <ClCompile Include="test\test-idna.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/utf-8 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
     <ClCompile Include="test\test-ip6-addr.c" />
+    <ClCompile Include="test\test-ipc-heavy-traffic-deadlock-bug.c" />
     <ClCompile Include="test\test-ipc.c" />
     <ClCompile Include="test\test-ipc-send-recv.c" />
     <ClCompile Include="test\test-loop-handles.c" />
@@ -325,7 +345,17 @@
     <ClCompile Include="test\test-loop-time.c" />
     <ClCompile Include="test\test-loop-configure.c" />
     <ClCompile Include="test\test-pipe-set-fchmod.c" />
+    <ClCompile Include="test\test-process-priority.c" />
     <ClCompile Include="test\test-process-title-threadsafe.c" />
+    <ClCompile Include="test\test-random.c" />
+    <ClCompile Include="test\test-signal-pending-on-close.c" />
+    <ClCompile Include="test\test-strscpy.c" />
+    <ClCompile Include="test\test-tcp-close-reset.c" />
+    <ClCompile Include="test\test-tcp-try-write-error.c" />
+    <ClCompile Include="test\test-tty-duplicate-key.c" />
+    <ClCompile Include="test\test-tty-escape-sequence-processing.c" />
+    <ClCompile Include="test\test-udp-connect.c" />
+    <ClCompile Include="test\test-uname.c" />
     <ClCompile Include="test\test-walk-handles.c" />
     <ClCompile Include="test\test-watcher-cross-stop.c" />
     <ClCompile Include="test\test-multiple-listen.c" />
