@@ -1026,6 +1026,27 @@
     <ClCompile Include="src\timer.c">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="test\dns-server.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-metrics.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-poll-multiple-handles.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-tcp-read-stop-start.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-test-macros.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-udp-mmsg.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-udp-sendmmsg-error.c">
+      <Filter>test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\heap-inl.h">

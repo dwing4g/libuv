@@ -31,13 +31,13 @@
     <ConfigurationType>Application</ConfigurationType>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <PlatformToolset>v141_xp</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <PlatformToolset>v141_xp</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -73,7 +73,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>include;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -107,7 +107,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>include;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -141,7 +141,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>include;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <DebugInformationFormat>None</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -185,7 +185,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>include;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <DebugInformationFormat>None</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -250,12 +250,16 @@
     <ClCompile Include="src\idna.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\inet.c" />
     <ClCompile Include="src\random.c" />
     <ClCompile Include="src\strscpy.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\threadpool.c" />
     <ClCompile Include="src\timer.c" />
@@ -288,6 +292,7 @@
     <ClCompile Include="src\win\winapi.c" />
     <ClCompile Include="src\win\winsock.c" />
     <ClCompile Include="test\blackhole-server.c" />
+    <ClCompile Include="test\dns-server.c" />
     <ClCompile Include="test\echo-server.c" />
     <ClCompile Include="test\run-tests.c" />
     <ClCompile Include="test\runner.c" />
@@ -344,17 +349,23 @@
     <ClCompile Include="test\test-loop-stop.c" />
     <ClCompile Include="test\test-loop-time.c" />
     <ClCompile Include="test\test-loop-configure.c" />
+    <ClCompile Include="test\test-metrics.c" />
     <ClCompile Include="test\test-pipe-set-fchmod.c" />
+    <ClCompile Include="test\test-poll-multiple-handles.c" />
     <ClCompile Include="test\test-process-priority.c" />
     <ClCompile Include="test\test-process-title-threadsafe.c" />
     <ClCompile Include="test\test-random.c" />
     <ClCompile Include="test\test-signal-pending-on-close.c" />
     <ClCompile Include="test\test-strscpy.c" />
     <ClCompile Include="test\test-tcp-close-reset.c" />
+    <ClCompile Include="test\test-tcp-read-stop-start.c" />
     <ClCompile Include="test\test-tcp-try-write-error.c" />
+    <ClCompile Include="test\test-test-macros.c" />
     <ClCompile Include="test\test-tty-duplicate-key.c" />
     <ClCompile Include="test\test-tty-escape-sequence-processing.c" />
     <ClCompile Include="test\test-udp-connect.c" />
+    <ClCompile Include="test\test-udp-mmsg.c" />
+    <ClCompile Include="test\test-udp-sendmmsg-error.c" />
     <ClCompile Include="test\test-uname.c" />
     <ClCompile Include="test\test-walk-handles.c" />
     <ClCompile Include="test\test-watcher-cross-stop.c" />
