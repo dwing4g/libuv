@@ -250,6 +250,9 @@
     <Filter Include="src\jni">
       <UniqueIdentifier>{914b8b34-d2a2-4146-bfbd-b094f8e23155}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\uv">
+      <UniqueIdentifier>{76c8625a-6504-437a-8d24-d9fb7cf08a5e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\uv.h">
@@ -389,6 +392,51 @@
     </ClInclude>
     <ClInclude Include="src\win\fs-fd-hash-inl.h">
       <Filter>src\win</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\aix.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\android-ifaddrs.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\bsd.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\darwin.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\errno.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\linux.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\os390.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\posix.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\stdint-msvc2008.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\sunos.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\threadpool.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\tree.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\unix.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\version.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\win.h">
+      <Filter>include\uv</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
