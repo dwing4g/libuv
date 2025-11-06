@@ -10,6 +10,7 @@ Java_jane_test_net_Libuv_libuv_1tcp_1close
 uv_accept
 uv_async_init
 uv_async_send
+uv_available_parallelism
 uv_backend_fd
 uv_backend_timeout
 uv_barrier_destroy
@@ -21,6 +22,7 @@ uv_chdir
 uv_check_init
 uv_check_start
 uv_check_stop
+uv_clock_gettime
 uv_close
 uv_cond_broadcast
 uv_cond_destroy
@@ -29,6 +31,7 @@ uv_cond_signal
 uv_cond_timedwait
 uv_cond_wait
 uv_cpu_info
+uv_cpumask_size
 uv_cwd
 uv_default_loop
 uv_disable_stdio_inheritance
@@ -95,6 +98,7 @@ uv_fs_symlink
 uv_fs_unlink
 uv_fs_utime
 uv_fs_write
+uv_get_available_memory
 uv_get_constrained_memory
 uv_get_free_memory
 uv_get_osfhandle
@@ -103,6 +107,7 @@ uv_get_total_memory
 uv_getaddrinfo
 uv_getnameinfo
 uv_getrusage
+uv_getrusage_thread
 uv_gettimeofday
 uv_guess_handle
 uv_handle_get_data
@@ -125,6 +130,7 @@ uv_ip4_addr
 uv_ip4_name
 uv_ip6_addr
 uv_ip6_name
+uv_ip_name
 uv_is_active
 uv_is_closing
 uv_is_readable
@@ -148,6 +154,7 @@ uv_loop_new
 uv_loop_set_data
 uv_loop_size
 uv_metrics_idle_time
+uv_metrics_info
 uv_mutex_destroy
 uv_mutex_init
 uv_mutex_init_recursive
@@ -159,8 +166,11 @@ uv_once
 uv_open_osfhandle
 uv_os_environ
 uv_os_free_environ
+uv_os_free_group
 uv_os_free_passwd
+uv_os_get_group
 uv_os_get_passwd
+uv_os_get_passwd2
 uv_os_getenv
 uv_os_gethostname
 uv_os_getpid
@@ -174,8 +184,10 @@ uv_os_uname
 uv_os_unsetenv
 uv_pipe
 uv_pipe_bind
+uv_pipe_bind2
 uv_pipe_chmod
 uv_pipe_connect
+uv_pipe_connect2
 uv_pipe_getpeername
 uv_pipe_getsockname
 uv_pipe_init
@@ -245,14 +257,23 @@ uv_tcp_getsockname
 uv_tcp_init
 uv_tcp_init_ex
 uv_tcp_keepalive
+uv_tcp_keepalive_ex
 uv_tcp_nodelay
 uv_tcp_open
 uv_tcp_simultaneous_accepts
 uv_thread_create
 uv_thread_create_ex
+uv_thread_detach
 uv_thread_equal
+uv_thread_getaffinity
+uv_thread_getcpu
+uv_thread_getname
+uv_thread_getpriority
 uv_thread_join
 uv_thread_self
+uv_thread_setaffinity
+uv_thread_setname
+uv_thread_setpriority
 uv_timer_again
 uv_timer_get_due_in
 uv_timer_get_repeat
@@ -262,6 +283,7 @@ uv_timer_start
 uv_timer_stop
 uv_translate_sys_error
 uv_try_write
+uv_try_write2
 uv_tty_get_vterm_state
 uv_tty_get_winsize
 uv_tty_init
@@ -277,6 +299,7 @@ uv_udp_getsockname
 uv_udp_init
 uv_udp_init_ex
 uv_udp_open
+uv_udp_open_ex
 uv_udp_recv_start
 uv_udp_recv_stop
 uv_udp_send
@@ -288,12 +311,17 @@ uv_udp_set_multicast_ttl
 uv_udp_set_source_membership
 uv_udp_set_ttl
 uv_udp_try_send
+uv_udp_try_send2
 uv_udp_using_recvmmsg
 uv_unref
 uv_update_time
 uv_uptime
+uv_utf16_length_as_wtf8
+uv_utf16_to_wtf8
 uv_version
 uv_version_string
 uv_walk
 uv_write
 uv_write2
+uv_wtf8_length_as_utf16
+uv_wtf8_to_utf16

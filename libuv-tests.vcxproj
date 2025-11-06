@@ -31,17 +31,17 @@
     <ConfigurationType>Application</ConfigurationType>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -231,8 +231,8 @@
     <ClInclude Include="src\idna.h" />
     <ClInclude Include="src\queue.h" />
     <ClInclude Include="src\strscpy.h" />
+    <ClInclude Include="src\strtok.h" />
     <ClInclude Include="src\uv-common.h" />
-    <ClInclude Include="src\win\atomicops-inl.h" />
     <ClInclude Include="src\win\fs-fd-hash-inl.h" />
     <ClInclude Include="src\win\handle-inl.h" />
     <ClInclude Include="src\win\internal.h" />
@@ -240,10 +240,8 @@
     <ClInclude Include="src\win\stream-inl.h" />
     <ClInclude Include="src\win\winapi.h" />
     <ClInclude Include="src\win\winsock.h" />
-    <ClInclude Include="test\runner.h" />
     <ClInclude Include="test\task.h" />
     <ClInclude Include="test\test-list.h" />
-    <ClInclude Include="test\runner-win.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\fs-poll.c" />
@@ -261,6 +259,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="src\strtok.c" />
+    <ClCompile Include="src\thread-common.c" />
     <ClCompile Include="src\threadpool.c" />
     <ClCompile Include="src\timer.c" />
     <ClCompile Include="src\uv-common.c" />
@@ -291,11 +291,7 @@
     <ClCompile Include="src\win\util.c" />
     <ClCompile Include="src\win\winapi.c" />
     <ClCompile Include="src\win\winsock.c" />
-    <ClCompile Include="test\blackhole-server.c" />
-    <ClCompile Include="test\dns-server.c" />
-    <ClCompile Include="test\echo-server.c" />
     <ClCompile Include="test\run-tests.c" />
-    <ClCompile Include="test\runner.c" />
     <ClCompile Include="test\test-connect-unspecified.c" />
     <ClCompile Include="test\test-fs-fd-hash.c" />
     <ClCompile Include="test\test-fs-open-flags.c" />
@@ -305,7 +301,6 @@
     <ClCompile Include="test\test-async.c" />
     <ClCompile Include="test\test-async-null-cb.c" />
     <ClCompile Include="test\test-callback-stack.c" />
-    <ClCompile Include="test\test-callback-order.c" />
     <ClCompile Include="test\test-close-fd.c" />
     <ClCompile Include="test\test-close-order.c" />
     <ClCompile Include="test\test-connection-fail.c" />
@@ -339,6 +334,8 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="test\test-iouring-pollhup.c" />
+    <ClCompile Include="test\test-ip-name.c" />
     <ClCompile Include="test\test-ip6-addr.c" />
     <ClCompile Include="test\test-ipc-heavy-traffic-deadlock-bug.c" />
     <ClCompile Include="test\test-ipc.c" />
@@ -346,25 +343,42 @@
     <ClCompile Include="test\test-loop-handles.c" />
     <ClCompile Include="test\test-loop-alive.c" />
     <ClCompile Include="test\test-loop-close.c" />
+    <ClCompile Include="test\test-loop-oom.c" />
     <ClCompile Include="test\test-loop-stop.c" />
     <ClCompile Include="test\test-loop-time.c" />
     <ClCompile Include="test\test-loop-configure.c" />
     <ClCompile Include="test\test-metrics.c" />
+    <ClCompile Include="test\test-not-readable-nor-writable-on-read-error.c" />
+    <ClCompile Include="test\test-not-writable-after-shutdown.c" />
     <ClCompile Include="test\test-pipe-set-fchmod.c" />
     <ClCompile Include="test\test-poll-multiple-handles.c" />
     <ClCompile Include="test\test-process-priority.c" />
     <ClCompile Include="test\test-process-title-threadsafe.c" />
     <ClCompile Include="test\test-random.c" />
+    <ClCompile Include="test\test-readable-on-eof.c" />
+    <ClCompile Include="test\test-shutdown-simultaneous.c" />
     <ClCompile Include="test\test-signal-pending-on-close.c" />
     <ClCompile Include="test\test-strscpy.c" />
+    <ClCompile Include="test\test-strtok.c" />
+    <ClCompile Include="test\test-tcp-close-after-read-timeout.c" />
     <ClCompile Include="test\test-tcp-close-reset.c" />
     <ClCompile Include="test\test-tcp-read-stop-start.c" />
+    <ClCompile Include="test\test-tcp-reuseport.c" />
+    <ClCompile Include="test\test-tcp-rst.c" />
     <ClCompile Include="test\test-tcp-try-write-error.c" />
+    <ClCompile Include="test\test-tcp-write-in-a-row.c" />
     <ClCompile Include="test\test-test-macros.c" />
+    <ClCompile Include="test\test-thread-affinity.c" />
+    <ClCompile Include="test\test-thread-name.c" />
+    <ClCompile Include="test\test-thread-priority.c" />
     <ClCompile Include="test\test-tty-duplicate-key.c" />
     <ClCompile Include="test\test-tty-escape-sequence-processing.c" />
     <ClCompile Include="test\test-udp-connect.c" />
+    <ClCompile Include="test\test-udp-connect6.c" />
     <ClCompile Include="test\test-udp-mmsg.c" />
+    <ClCompile Include="test\test-udp-recv-in-a-row.c" />
+    <ClCompile Include="test\test-udp-recvmsg-unreachable-error.c" />
+    <ClCompile Include="test\test-udp-reuseport.c" />
     <ClCompile Include="test\test-udp-sendmmsg-error.c" />
     <ClCompile Include="test\test-uname.c" />
     <ClCompile Include="test\test-walk-handles.c" />
@@ -458,7 +472,6 @@
     <ClCompile Include="test\test-udp-multicast-interface.c" />
     <ClCompile Include="test\test-udp-multicast-interface6.c" />
     <ClCompile Include="test\test-udp-try-send.c" />
-    <ClCompile Include="test\runner-win.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />

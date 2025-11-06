@@ -435,21 +435,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="test\blackhole-server.c">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClCompile Include="test\echo-server.c">
-      <Filter>test</Filter>
-    </ClCompile>
     <ClCompile Include="test\run-tests.c">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="test\runner.c">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClInclude Include="test\runner.h">
-      <Filter>test</Filter>
-    </ClInclude>
     <ClCompile Include="test\test-get-loadavg.c">
       <Filter>test</Filter>
     </ClCompile>
@@ -466,9 +454,6 @@
       <Filter>test</Filter>
     </ClCompile>
     <ClCompile Include="test\test-callback-stack.c">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClCompile Include="test\test-callback-order.c">
       <Filter>test</Filter>
     </ClCompile>
     <ClCompile Include="test\test-close-fd.c">
@@ -855,12 +840,6 @@
     <ClCompile Include="test\test-udp-try-send.c">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="test\runner-win.c">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClInclude Include="test\runner-win.h">
-      <Filter>test</Filter>
-    </ClInclude>
     <ClCompile Include="src\fs-poll.c">
       <Filter>src</Filter>
     </ClCompile>
@@ -1026,9 +1005,6 @@
     <ClCompile Include="src\timer.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="test\dns-server.c">
-      <Filter>test</Filter>
-    </ClCompile>
     <ClCompile Include="test\test-metrics.c">
       <Filter>test</Filter>
     </ClCompile>
@@ -1047,6 +1023,69 @@
     <ClCompile Include="test\test-udp-sendmmsg-error.c">
       <Filter>test</Filter>
     </ClCompile>
+    <ClCompile Include="test\test-iouring-pollhup.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-ip-name.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-loop-oom.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-not-readable-nor-writable-on-read-error.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-not-writable-after-shutdown.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-readable-on-eof.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-shutdown-simultaneous.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-strtok.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-tcp-close-after-read-timeout.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-tcp-reuseport.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-tcp-rst.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-tcp-write-in-a-row.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-thread-affinity.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-thread-name.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-thread-priority.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-udp-connect6.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-udp-recv-in-a-row.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-udp-recvmsg-unreachable-error.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test-udp-reuseport.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strtok.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread-common.c">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\heap-inl.h">
@@ -1057,9 +1096,6 @@
     </ClInclude>
     <ClInclude Include="src\uv-common.h">
       <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\win\atomicops-inl.h">
-      <Filter>src\win</Filter>
     </ClInclude>
     <ClInclude Include="src\win\handle-inl.h">
       <Filter>src\win</Filter>
@@ -1087,6 +1123,9 @@
     </ClInclude>
     <ClInclude Include="src\win\fs-fd-hash-inl.h">
       <Filter>src\win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strtok.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

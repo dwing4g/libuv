@@ -285,9 +285,6 @@
     <ClCompile Include="src\win\async.c">
       <Filter>src\win</Filter>
     </ClCompile>
-    <ClInclude Include="src\win\atomicops-inl.h">
-      <Filter>src\win</Filter>
-    </ClInclude>
     <ClCompile Include="src\win\core.c">
       <Filter>src\win</Filter>
     </ClCompile>
@@ -396,9 +393,6 @@
     <ClInclude Include="include\uv\aix.h">
       <Filter>include\uv</Filter>
     </ClInclude>
-    <ClInclude Include="include\uv\android-ifaddrs.h">
-      <Filter>include\uv</Filter>
-    </ClInclude>
     <ClInclude Include="include\uv\bsd.h">
       <Filter>include\uv</Filter>
     </ClInclude>
@@ -415,9 +409,6 @@
       <Filter>include\uv</Filter>
     </ClInclude>
     <ClInclude Include="include\uv\posix.h">
-      <Filter>include\uv</Filter>
-    </ClInclude>
-    <ClInclude Include="include\uv\stdint-msvc2008.h">
       <Filter>include\uv</Filter>
     </ClInclude>
     <ClInclude Include="include\uv\sunos.h">
@@ -438,6 +429,9 @@
     <ClInclude Include="include\uv\win.h">
       <Filter>include\uv</Filter>
     </ClInclude>
+    <ClInclude Include="src\strtok.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\jni.c">
@@ -456,6 +450,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\strscpy.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strtok.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread-common.c">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

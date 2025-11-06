@@ -138,9 +138,6 @@
     <ClCompile Include="test\benchmark-udp-pummel.c">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="test\dns-server.c">
-      <Filter>test</Filter>
-    </ClCompile>
     <ClCompile Include="test\echo-server.c">
       <Filter>test</Filter>
     </ClCompile>
@@ -273,11 +270,14 @@
     <ClCompile Include="src\version.c">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\strtok.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread-common.c">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\win\atomicops-inl.h">
-      <Filter>src\win</Filter>
-    </ClInclude>
     <ClInclude Include="src\win\fs-fd-hash-inl.h">
       <Filter>src\win</Filter>
     </ClInclude>
@@ -312,6 +312,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\uv-common.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strtok.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
