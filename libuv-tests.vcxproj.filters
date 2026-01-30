@@ -1086,6 +1086,15 @@
     <ClCompile Include="src\thread-common.c">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="test\runner.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\runner-win.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\echo-server.c">
+      <Filter>test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\heap-inl.h">
@@ -1126,6 +1135,12 @@
     </ClInclude>
     <ClInclude Include="src\strtok.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="test\runner-win.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="test\runner.h">
+      <Filter>test</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
